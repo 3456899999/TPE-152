@@ -1,0 +1,22 @@
+Sub AfficherCV()
+    Sheets("CV").Visible = True
+    Sheets("CV").Activate
+End Sub
+
+Sub AfficherPortfolio()
+    Sheets("Portfolio").Visible = True
+    Sheets("Portfolio").Activate
+End Sub
+
+
+Private Sub UserForm_Initialize()
+    Me.Caption = "Menu CV & Portfolio"
+End Sub
+
+Private Sub btnCV_Click()
+    Sheets("CV").Activate
+End Sub
+
+Private Sub btnPortfolio_Click()
+    Sheets("Portfolio").Activate
+End Sub
