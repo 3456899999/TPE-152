@@ -1,0 +1,24 @@
+Sub InsererIconeAvecLien()
+
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("Feuil1") ' Modifier si besoin
+    
+    Dim imagePath As String
+    imagePath = "C:\Chemin\vers\limage.png" ' Remplace par le chemin vers ton icône
+    
+    Dim img As Picture
+    Set img = ws.Pictures.Insert(imagePath)
+    
+    With img
+        .Left = ws.Range("B2").Left ' Position horizontale (colonne B)
+        .Top = ws.Range("B2").Top   ' Position verticale (ligne 2)
+        .Width = 30                 ' Redimensionner (optionnel)
+        .Height = 30                ' Redimensionner (optionnel)
+        .Placement = xlMoveAndSize ' Suivre la cellule
+    End With
+    
+    ' Ajouter un lien hypertexte sur l’image
+    ws.Hyperlinks.Add Anchor:=img, Address:="https://www.example.com", _
+                      TextToDisplay:="Lien vers le site"
+    
+End Sub
