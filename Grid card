@@ -1,0 +1,35 @@
+Sub DisposerPhotosEnGrille()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("Feuil1") ' Adapter si besoin
+
+    Dim dossier As String
+    dossier = "C:\Images\" ' Chemin contenant les images
+
+    Dim fichiers As Variant
+    fichiers = Array("photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg")
+
+    Dim nbColonnes As Integer: nbColonnes = 3
+    Dim margeGauche As Double: margeGauche = 20
+    Dim margeHaut As Double: margeHaut = 20
+    Dim espacement As Double: espacement = 10
+    Dim largeur As Double: largeur = 100
+    Dim hauteur As Double: hauteur = 100
+
+    Dim i As Integer
+    For i = 0 To UBound(fichiers)
+        Dim img As Picture
+        Set img = ws.Pictures.Insert(dossier & fichiers(i))
+
+        Dim col As Integer: col = i Mod nbColonnes
+        Dim ligne As Integer: ligne = Int(i / nbColonnes)
+
+        With img
+            .Left = margeGauche + col * (largeur + espacement)
+            .Top = margeHaut + ligne * (hauteur + espacement)
+            .Width = largeur
+            .Height = hauteur
+            .Placement = xlMoveAndSize
+        End With
+    Next i
+
+End Sub
